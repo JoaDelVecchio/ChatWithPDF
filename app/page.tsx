@@ -6,6 +6,8 @@ import {
   ServerCogIcon,
   ZapIcon,
 } from "lucide-react";
+import { Button, buttonVariants } from "@/components/ui/button";
+import Link from "next/link";
 
 const features = [
   {
@@ -70,6 +72,12 @@ const Home = () => {
               extract key insights effortlessly.
             </p>
           </div>
+          <Link
+            className={`${buttonVariants({ variant: "default" })} mt-10`}
+            href={"/dashboard"}
+          >
+            Get Started
+          </Link>
         </div>
       </div>
     </main>
