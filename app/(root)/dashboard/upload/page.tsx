@@ -1,4 +1,10 @@
+import FileUploader from "@/components/FileUploader";
+
 const Upload = () => {
-  return <div>Upload</div>;
+  return (
+    <div>
+      <FileUploader />
+    </div>
+  );
 };
 export default Upload;
