@@ -1,8 +1,15 @@
-const ChatToFilePage = ({ params }: { params: { id: string } }) => {
-  if (!params.id) throw new Error("Params missing");
+// app/(root)/dashboard/files/[id]/page.tsx
+
+interface ChatToFilePageProps {
+  params: { id: string };
+}
+
+const ChatToFilePage = async ({ params }: ChatToFilePageProps) => {
+  if (!params?.id) throw new Error("Params missing");
 
   const { id } = params;
 
-  return <div>ChatToFilePage {id}</div>;
+  return <div>ChatToFilePage ID: {id}</div>;
 };
+
 export default ChatToFilePage;
