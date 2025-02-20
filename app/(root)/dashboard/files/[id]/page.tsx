@@ -1,13 +1,15 @@
 // app/(root)/dashboard/files/[id]/page.tsx
 
 interface ChatToFilePageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 const ChatToFilePage = async ({ params }: ChatToFilePageProps) => {
-  if (!params?.id) throw new Error("Params missing");
+  const { id } = await params;
 
-  const { id } = params;
+  if (!id) {
+    throw new Error("ID is missing");
+  }
 
   return <div>ChatToFilePage ID: {id}</div>;
 };
