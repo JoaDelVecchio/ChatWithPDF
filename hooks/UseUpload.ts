@@ -10,7 +10,7 @@ export enum StatusText {
   UPLOADING = "Uploading file...",
   UPLOADED = "File uploaded successfully",
   SAVING = "Saving file to database...",
-  ERROR = "Upload failed",
+  GENERATING = "Generating AI Embeddings, this will only take a few seconds...",
 }
 
 export type Status = StatusText[keyof StatusText];
@@ -74,7 +74,7 @@ function useUpload() {
       setStatus(StatusText.UPLOADED);
     } catch (error) {
       console.error("Upload failed:", (error as Error).message);
-      setStatus(StatusText.ERROR);
+      setStatus((error as Error).message);
       setProgress(null);
     }
   };
