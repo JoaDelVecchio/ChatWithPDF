@@ -1,11 +1,31 @@
 "use client";
+import useUpload from "@/hooks/UseUpload";
 import { CircleArrowDown, RocketIcon } from "lucide-react";
-import React, { useCallback } from "react";
+import { useRouter } from "next/navigation";
+import React, { useCallback, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 
 const FileUploader = () => {
-  const onDrop = useCallback((acceptedFiles: File[]) => {
+  const { progress, fileId, status, handleUpload } = useUpload();
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (fileId) {
+      router.push(`/dashboard/files/${fileId}`);
+    }
+  }, [fileId, router]);
+
+  const onDrop = useCallback(async (acceptedFiles: File[]) => {
     console.log(acceptedFiles);
+
+    const file = acceptedFiles[0];
+
+    if (file) {
+      await handleUpload(file);
+    } else {
+      //toast... if we are pro/free/pasaste del limite/
+    }
   }, []);
 
   const {
@@ -17,6 +37,7 @@ const FileUploader = () => {
     isDragReject,
   } = useDropzone({
     onDrop,
+    maxFiles: 1,
     accept: { "application/pdf": [] },
   });
 

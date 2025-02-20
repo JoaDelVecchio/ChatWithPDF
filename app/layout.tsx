@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
-        <body className="min-h-screen h-screen w-ful overflow-hidden flex flex-col">
+        <body className="min-h-screen h-screen w-full overflow-hidden flex flex-col">
           {children}
         </body>
       </html>
