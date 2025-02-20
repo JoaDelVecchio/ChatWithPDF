@@ -4,7 +4,6 @@ import {
   CheckCircleIcon,
   CircleArrowDown,
   HammerIcon,
-  Rocket,
   RocketIcon,
   SaveIcon,
 } from "lucide-react";
@@ -23,17 +22,20 @@ const FileUploader = () => {
     }
   }, [fileId, router]);
 
-  const onDrop = useCallback(async (acceptedFiles: File[]) => {
-    console.log(acceptedFiles);
+  const onDrop = useCallback(
+    async (acceptedFiles: File[]) => {
+      console.log(acceptedFiles);
 
-    const file = acceptedFiles[0];
+      const file = acceptedFiles[0];
 
-    if (file) {
-      await handleUpload(file);
-    } else {
-      //toast... if we are pro/free/pasaste del limite/
-    }
-  }, []);
+      if (file) {
+        await handleUpload(file);
+      } else {
+        //toast... if we are pro/free/pasaste del limite/
+      }
+    },
+    [handleUpload]
+  );
 
   const statusIcons: {
     [key in StatusText]: JSX.Element;
@@ -74,7 +76,7 @@ const FileUploader = () => {
             } radial-progress bg-blue-300 text-white broder-blue-600 border-4`}
             role="progressbar"
             style={{
-              //@ts-ignore
+              //@ts-expect-error: Variable CSS personalized
               "--value": `${progress} `,
               "--size": "12rem",
               "--thickness": "1.3rem",
@@ -84,7 +86,7 @@ const FileUploader = () => {
           </div>
 
           {
-            //@ts-ignore
+            //@ts-expect-error: Variable personalized
             statusIcons[status!]
           }
           <p>{String(status)}</p>
